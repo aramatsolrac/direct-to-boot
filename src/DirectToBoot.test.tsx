@@ -44,7 +44,22 @@ describe("Direct To Boot", () => {
     expect(button).toBeInTheDocument();
     expect(button).toBeDisabled();
 
-    // wait for
     await waitFor(() => expect(button).toBeEnabled(), { timeout: 3000 });
+    await screen.findByText(
+      "Please click the button when you have arrived, One of our friendly staff will bring your order to you."
+    );
+  });
+
+  it("shows a fallback call the store button", async () => {
+    render(<DirectToBoot orderId="error-id" />);
+
+    const a = screen.getByText("04 23 33");
+    expect(a).toBeInTheDocument();
+    expect(a).toBeDisabled();
+
+    await waitFor(() => expect(a).toBeInTheDocument(), { timeout: 3000 });
+    await screen.findByText(
+      "Seems something went wrong, you can the following number to notify us instead."
+    );
   });
 });
