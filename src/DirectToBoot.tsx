@@ -1,45 +1,28 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { getMessage } from "./utils";
+import { useFetchOrder } from "./useFetchOrder";
 
 interface DirectToBootProps {
   orderId: string;
 }
 
-function getMessage(status: string) {
+const createButton = (status: string) => {
   switch (status) {
-    case "initialised":
-      return "We are preparing your order..";
+    case "initialized":
+      return <button disabled={true}>I'm here</button>;
     case "ready":
-      return "Please click the button when you have arrived. One of our friendly staff will bring your order to you";
+      return <button>I'm here</button>;
     case "error":
-      return "Seems something went wrong, you can the following number to notify us instead.";
+      return <a href="tel: 13343434">04 23 33</a>;
   }
-}
+};
 
 function DirectToBoot({ orderId }: DirectToBootProps) {
-  const [status, setStatus] = useState<string>("initialised");
-
-  useEffect(() => {
-    axios
-      .get(`/api/orders/${orderId}`)
-      .then((response) => {
-        if (response.data.status === "ready") {
-          setStatus("ready");
-        }
-      })
-      .catch((e) => {
-        setStatus("error");
-      });
-  }, [orderId]);
-
+  const status = useFetchOrder(orderId);
   return (
     <div>
       <h1>Direct To Boot</h1>
-      <p>We are preparing your order...</p>
-      {status === "error" && <a href="tel: 13343434">04 23 33</a>}
-      {status !== "error" && (
-        <button disabled={status !== "ready"}>I'm here</button>
-      )}
+      <p>{getMessage(status)}</p>
+      {createButton(status)}
     </div>
   );
 }
