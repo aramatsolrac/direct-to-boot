@@ -1,0 +1,65 @@
+.app {
+  width: 600px;
+  margin-inline: auto;
+  font-family: "Roboto", "Arial", sans-serif;
+  color: #333;
+}
+
+.container {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin-block: 1.5rem;
+  box-shadow: 0 4px 15px -5px rgba(0, 0, 0, 0.2);
+  background-color: #f9f9f9;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+}
+
+a.primaryButton {
+  text-decoration: none;
+  display: inline-block;
+}
+
+.primaryButton {
+  margin-left: auto;
+  font-family: "Roboto", "Arial", sans-serif;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.3rem;
+  background-color: #4a90e2;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.primaryButton:hover {
+  background-color: #3a78c2;
+  opacity: 0.95;
+}
+
+.primaryButton:active {
+  background-color: #3366a8;
+  opacity: 1;
+}
+
+.primaryButton:disabled {
+  background-color: #b0c4de;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.container p {
+  margin-block: 1rem;
+  line-height: 1.6;
+}
+
+.container p:last-child {
+  margin-bottom: 0;
+}
